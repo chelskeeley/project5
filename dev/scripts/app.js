@@ -18,12 +18,36 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//add the react ace component to the page
+//set the state of the main App component.
+//set up a sample of how you want to store your data in state/firebase
+//write a method on App component, that will be passed thorugh props, to get the neccessary data from the aceComponent
+
+/*
+this.state = {
+  firebaseKey: {
+    title: `blah`,
+    tag: `blahblah`,
+    description: `stuff`,
+    snippet: `a bunch of code`
+  }
+}
 
 
-
+-title
+-tag
+-description
+-snippet
+*/
 
 class App extends React.Component {
+    constructor(){
+      super();
+      this.state = {
+
+      }
+    }
+
+
     render() {
       return (
         <div>

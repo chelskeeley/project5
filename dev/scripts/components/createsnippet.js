@@ -5,6 +5,22 @@ import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
 class CreateSnippet extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            snippet: ''
+        }
+    this.onChange = this.onChange.bind(this)
+    }
+
+    onChange(newValue) {
+    console.log(newValue);
+        this.setState({
+        snippet: newValue
+        })
+    }
+
+
     render(){
         return (
             <div className='createSnippet'>
@@ -15,7 +31,18 @@ class CreateSnippet extends React.Component {
                     <label htmlFor="tags">Tags:</label>
                     <input type="text"/>
                     <label htmlFor="description">Enter a Description:</label>
-                    <input type="text"/>
+                    {/* FOR THE FUTURE, TO CHANGE SNIPPET MODE */}
+                    {/* <label htmlFor="mode">Mode:</label>
+                    <select name="mode" id="">
+                        <option value="javascript">Javascript</option>
+                        <option value="sass">Sass</option>
+                        <option value="html">HTML</option>
+                        <option value="css">Css</option>
+                        <option value="java">Java</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="python">Python</option>
+                        <option value="jsx">Jsx</option>
+                    </select> */}
                     <label htmlFor="reactAce">Enter You Snippet:</label>
                     <AceEditor
                         mode="javascript"
@@ -26,11 +53,9 @@ class CreateSnippet extends React.Component {
                         fontSize={14}
                         showPrintMargin={true}
                         showGutter={true}
-                        height='300px'
+                        height="300px"
                         highlightActiveLine={true}
-                        value={`function replace(allWith) {
-    yourSnippet;
-}`}
+                        value={this.state.snippet}
                         setOptions={{
                             enableBasicAutocompletion: false,
                             enableLiveAutocompletion: false,
