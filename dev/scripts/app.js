@@ -1,18 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Donut from './donut';
+import AceEditor from 'react-ace';
+import brace from 'brace';
+import firebase from 'firebase';
 
-const donuts = ['Sour Cream Glazed', 'Honey Dip', 'Boston Cream'];
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyB_lzsOu94beVHCRJM_kDibc5nQjJpdxSM",
+  authDomain: "project-5-e7fa0.firebaseapp.com",
+  databaseURL: "https://project-5-e7fa0.firebaseio.com",
+  projectId: "project-5-e7fa0",
+  storageBucket: "",
+  messagingSenderId: "393325598786"
+};
+firebase.initializeApp(config);
+
 
 class App extends React.Component {
     render() {
       return (
         <div>
-          {donuts.map((donut)=>{
-            return (
-              <Donut donutName={donut}/>
-            )
-          })}
+          Let's crush React!
         </div>
       )
     }
@@ -20,4 +28,3 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
-//check the movieDB codealong in the react section to learn about routing,to have different views (pages) but just the one index.html
