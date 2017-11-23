@@ -8,11 +8,19 @@ class SnippetList extends React.Component{
             showModal: false,
         }
         this.handleClick = this.handleClick.bind(this)
+        this.closeModal = this.closeModal.bind(this)
     }
 
     handleClick(){
         this.setState({
             showModal: true
+        })
+    }
+
+    closeModal(event){
+        event.stopPropagation();
+        this.setState({
+            showModal: false
         })
     }
 
@@ -22,10 +30,10 @@ class SnippetList extends React.Component{
             <h4>{this.props.data.title}</h4>
             <p>{this.props.data.tag}</p>
             {this.state.showModal
-                ? <DisplaySnippet snipData={this.props.data} />
-                :null
+                ? <DisplaySnippet snipData={this.props.data} closeFun={this.closeModal} />
+                : null
             }
-
+ 
         </li>)
     }
 }

@@ -11,17 +11,26 @@ import 'brace/mode/python';
 import 'brace/theme/monokai';
 
 class DisplaySnippet extends React.Component{
+    constructor(){
+        super();
+        this.clickHandle = this.clickHandle.bind(this)
+    }
+
+    clickHandle(event){
+        event.preventDefault();
+        this.props.closeFun(event)
+    }
 
     render(){
         return(
             <div className='snippetModal'>
+                <button onClick={this.clickHandle}>Close</button>
                 <h4>{this.props.snipData.title}</h4>
                 <p>{this.props.snipData.description}</p>
                 <p>Tags ({this.props.snipData.mode}), Mode ({this.props.snipData.tag})</p>
                 <AceEditor
                     mode={this.props.snipData.mode}
                     theme="monokai"
-                    // name="makeSnippet"
                     onLoad={this.onLoad}
                     onChange={this.onChange}
                     fontSize={14}
@@ -37,7 +46,6 @@ class DisplaySnippet extends React.Component{
                         showLineNumbers: true,
                         tabSize: 2,
                     }}
-                    // id='reactAce'
                     readOnly={true} />
             </div>
         )

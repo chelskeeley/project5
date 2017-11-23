@@ -25,9 +25,9 @@ WHEN YOU CLICK ON EACH LIST ITEM, LET USER SEE ALL SNIPPET INFO FOR WHAT THEY CL
 
 
 -[*] the onCLick has to be on the li in snippetList
--[ ] each li already has access to all its own data as a prop
--[ ] make a new component called DisplaySnippet, pass it all the data for each snippet from snippetLIst
--[ ] when you click on an li, set LOCAL state of showModal in snippetLIst to true, then use a ternary operator to say if showmodal is true, render <DisplaySnippet /> else null
+-[*] each li already has access to all its own data as a prop
+-[*] make a new component called DisplaySnippet, pass it all the data for each snippet from snippetLIst
+-[*] when you click on an li, set LOCAL state of showModal in snippetLIst to true, then use a ternary operator to say if showmodal is true, render <DisplaySnippet /> else null
 
 */
 
@@ -43,7 +43,6 @@ class App extends React.Component {
 
     addSnippet(fullSnip){
       console.log(fullSnip);
-      //8:50 in video for organizing object? put in an object with a key of usersSnip?
       const userSnippet = fullSnip;
       const dbRef = firebase.database().ref();
       dbRef.push(userSnippet);

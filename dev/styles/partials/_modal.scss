@@ -1,0 +1,13 @@
+.snippetModal {
+    border: 1px solid black;
+    border-radius: 3px;
+    max-width: 700px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    z-index: 9999;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
