@@ -39,6 +39,7 @@ class App extends React.Component {
         allSnippets: []
       };
       this.addSnippet = this.addSnippet.bind(this)
+      this.removeSnippet = this.removeSnippet.bind(this)
     }
 
     addSnippet(fullSnip){
@@ -46,6 +47,14 @@ class App extends React.Component {
       const userSnippet = fullSnip;
       const dbRef = firebase.database().ref();
       dbRef.push(userSnippet);
+    }
+
+    removeSnippet(event, snippetToRemove){
+      event.stopPropagation(event);
+
+      console.log(snippetToRemove)
+      const dbRef = firebase.database().ref(snippetToRemove);
+      dbRef.remove();
     }
 
 
@@ -57,6 +66,7 @@ class App extends React.Component {
         const snippetData = firebaseData.val();
 
         for(let snipKey in snippetData){
+          snippetData[snipKey].key = snipKey;
           snippetArray.push(snippetData[snipKey])
         }
         this.setState({
@@ -72,7 +82,7 @@ class App extends React.Component {
           <div className='wrapper'>
             <CreateSnippet submitForm={this.addSnippet}/>
             <ul>{this.state.allSnippets.map((snip, i)=>{
-              return <SnippetList data={snip} key={i} />
+              return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet}/>
               })}
             </ul>
           </div>

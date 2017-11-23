@@ -20,6 +20,7 @@ class DisplaySnippet extends React.Component{
         event.preventDefault();
         this.props.closeFun(event)
     }
+    
 
     render(){
         return(
@@ -47,6 +48,8 @@ class DisplaySnippet extends React.Component{
                         tabSize: 2,
                     }}
                     readOnly={true} />
+                <button onClick={()=>this.props.delete(event, this.props.snipData.key)}>Delete</button>
+                
             </div>
         )
     }

@@ -30,7 +30,7 @@ class SnippetList extends React.Component{
             <h4>{this.props.data.title}</h4>
             <p>{this.props.data.tag}</p>
             {this.state.showModal
-                ? <DisplaySnippet snipData={this.props.data} closeFun={this.closeModal} />
+                ? <DisplaySnippet snipData={this.props.data} closeFun={this.closeModal} delete={this.props.remove} />
                 : null
             }
  
