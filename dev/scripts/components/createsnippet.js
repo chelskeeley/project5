@@ -2,6 +2,12 @@ import React from 'react';
 import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/javascript';
+import 'brace/mode/sass';
+import 'brace/mode/html';
+import 'brace/mode/css';
+import 'brace/mode/java';
+import 'brace/mode/ruby';
+import 'brace/mode/python';
 import 'brace/theme/monokai';
 
 class CreateSnippet extends React.Component {
@@ -11,41 +17,63 @@ class CreateSnippet extends React.Component {
             title: '',
             description: '',
             tag: '',
-            snippet: ``
+            snippet: ``,
+            mode: ''
 
         }
     this.onChange = this.onChange.bind(this);
-    this.titleSave = this.titleSave.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    //event listener for ace
     onChange(newValue) {
-    console.log(newValue);
         this.setState({
             snippet: newValue
         })
     }
 
-    titleSave(event){
+    //look into conditional rendering of components in react
+    //maybe have a condition on the state that is like showModal: true/false
+    //in jsx, have to use expressions,and if/elses are statements,  so HAVE to use ternary operator instead
+    //can use in the snippet component to add and remove a certain class, then style the class/opacity etc with css
+
+    handleChange(event){
         this.setState({
-            title: event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
+    handleSubmit(event){   
+        //prevent default form action
+        event.preventDefault();
+        this.props.submitForm(this.state);
+
+        this.setState({
+            title: '',
+            description: '',
+            tag: '',
+            snippet: ``,
+            mode: ''
+        })
+
+    }
 
     render(){
         return (
             <div className='createSnippet'>
                 <h2>Create a New Snippet</h2>
-                <form action="">
+                <form action="" onSubmit={this.handleSubmit}>
                     <label htmlFor="title">Title:</label>
-                    <input type="text" onChange={this.titleSave} value={this.state.title} />
-                    <label htmlFor="tags">Tags:</label>
-                    <input type="text"/>
+                    <input type="text" onChange={this.handleChange} value={this.state.title} id='title' name='title'/>
+
+                    <label htmlFor="tag">Tag:</label>
+                    <input type="text" onChange={this.handleChange} value={this.state.tag} id='tag' name='tag'/>
+
                     <label htmlFor="description">Enter a Description:</label>
-                    <input type="text"/>
-                    {/* FOR THE FUTURE, TO CHANGE SNIPPET MODE */}
-                    {/* <label htmlFor="mode">Mode:</label>
-                    <select name="mode" id="">
+                    <input type="text" onChange={this.handleChange} value={this.state.description} id='description' name='description'/>
+
+                    <label htmlFor="mode">Mode:</label>
+                    <select name="mode" id="mode" onChange={this.handleChange} value={this.state.mode} name='mode'>
                         <option value="javascript">Javascript</option>
                         <option value="sass">Sass</option>
                         <option value="html">HTML</option>
@@ -53,11 +81,11 @@ class CreateSnippet extends React.Component {
                         <option value="java">Java</option>
                         <option value="ruby">Ruby</option>
                         <option value="python">Python</option>
-                        <option value="jsx">Jsx</option>
-                    </select> */}
+                    </select>
+
                     <label htmlFor="reactAce">Enter Your Snippet:</label>
                     <AceEditor
-                        mode="javascript"
+                        mode={this.state.mode}
                         theme="monokai"
                         name="makeSnippet"
                         onLoad={this.onLoad}
@@ -74,15 +102,11 @@ class CreateSnippet extends React.Component {
                             enableSnippets: false,
                             showLineNumbers: true,
                             tabSize: 2,
-                        }} />
+                        }} 
+                        id='reactAce'/>
 
                     <button>Create</button>
-
-                
-                
                 </form>
-
-
             </div>
         )
     }
