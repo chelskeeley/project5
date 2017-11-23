@@ -15,7 +15,30 @@ class DisplaySnippet extends React.Component{
     render(){
         return(
             <div className='snippetModal'>
-                Hello!
+                <h4>{this.props.snipData.title}</h4>
+                <p>{this.props.snipData.description}</p>
+                <p>Tags ({this.props.snipData.mode}), Mode ({this.props.snipData.tag})</p>
+                <AceEditor
+                    mode={this.props.snipData.mode}
+                    theme="monokai"
+                    // name="makeSnippet"
+                    onLoad={this.onLoad}
+                    onChange={this.onChange}
+                    fontSize={14}
+                    showPrintMargin={true}
+                    showGutter={true}
+                    height="300px"
+                    highlightActiveLine={true}
+                    value={this.props.snipData.snippet}
+                    setOptions={{
+                        enableBasicAutocompletion: false,
+                        enableLiveAutocompletion: false,
+                        enableSnippets: false,
+                        showLineNumbers: true,
+                        tabSize: 2,
+                    }}
+                    // id='reactAce'
+                    readOnly={true} />
             </div>
         )
     }
