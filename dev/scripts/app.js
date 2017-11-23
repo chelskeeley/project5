@@ -6,6 +6,7 @@ import firebase from 'firebase';
 
 import Header from './components/header.js';
 import CreateSnippet from './components/createsnippet.js';
+import SnippetList from './components/snippetList.js';
 
 // Initialize Firebase
 const config = {
@@ -18,30 +19,18 @@ const config = {
 };
 firebase.initializeApp(config);
 
-//SAVE DATA FROM CREATESNIPPET COMPONENT TO APP STATE AND POST TO FIREBASE
-  //[*]create method on App called addSnippet
-  //[*]pass method through props in CreateSnippet component
-     //[*]write method in createSnippet component for onsubmit that will pass the data and clear the state
-  //[*]write a method on App component, that will be passed thorugh props, to get the neccessary      data from the aceComponent
-  //[*]pass data from createSnippet up to firebase
-  //[*]put listening for  firebase changes to update main app state in component did mount
-  //[ ]render state on the page
-    //[ ]create new component called DisplaySnippets in new file(import and export!!)
-    //[ ]put in App component(inside of ul)
-    //overarching parent element will be an <li>, only display title? and tag? in li??
-//
-
 /*
-this.state = {
-  firebaseKey: {
-    title: `blah`,
-    tag: `blahblah`,
-    description: `stuff`,
-    mode: 'css',
-    snippet: `a bunch of code`
-  }
-}
+WHEN YOU CLICK ON EACH LIST ITEM, LET USER SEE ALL SNIPPET INFO FOR WHAT THEY CLICKED ON , INCLUDING SNIPPET IN HIGHLIGHTED ACE COMPONENT
+
+
+
+-[*] the onCLick has to be on the li in snippetList
+-[ ] each li already has access to all its own data as a prop
+-[ ] make a new component called DisplaySnippet, pass it all the data for each snippet from snippetLIst
+-[ ] when you click on an li, set LOCAL state of showModal in snippetLIst to true, then use a ternary operator to say if showmodal is true, render <DisplaySnippet /> else null
+
 */
+
 
 class App extends React.Component {
     constructor(){
@@ -83,6 +72,10 @@ class App extends React.Component {
           <Header />
           <div className='wrapper'>
             <CreateSnippet submitForm={this.addSnippet}/>
+            <ul>{this.state.allSnippets.map((snip, i)=>{
+              return <SnippetList data={snip} key={i} />
+              })}
+            </ul>
           </div>
         </div>
       )
