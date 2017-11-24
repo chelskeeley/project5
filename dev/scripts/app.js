@@ -29,7 +29,8 @@ class App extends React.Component {
       super();
       this.state = {
         allSnippets: [],
-        byTag: ''
+        byTag: '',
+        loggedIn: false
       };
       this.addSnippet = this.addSnippet.bind(this)
       this.removeSnippet = this.removeSnippet.bind(this)
@@ -83,11 +84,16 @@ class App extends React.Component {
             this.setState({
               allSnippets: snippetArray
             })
-          })//closes dbref on value
-
+          });//closes dbref on value
+          this.setState({
+            loggedIn: true
+          })
         } else{
           this.setState({
             allSnippets: []
+          });
+          this.setState({
+            loggedIn: false
           })
           alert('You are signed out!')
         }//closes if statement
@@ -97,18 +103,35 @@ class App extends React.Component {
     }//closes component did mount
     
     render() {
+      let mainContent = '';
+      if(this.state.loggedIn === true){
+        mainContent = (
+          <div>
+            <CreateSnippet submitForm={this.addSnippet} />
+            <form action="">
+              <label htmlFor="searchBox">Search By Tag:</label>
+              <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
+              <button onClick={this.handleClick}>Clear</button>
+            </form>
+          </div>
+        )
+      }
+      else {
+        mainContent = ''
+      }
       return (
         <div>
           <Header />
           <div className='wrapper'>
-            <CreateSnippet submitForm={this.addSnippet}/>
-            <div>
+            {/* <CreateSnippet submitForm={this.addSnippet}/> */}
+            {mainContent}
+            {/* <div>
               <form action="">
                 <label htmlFor="searchBox">Search By Tag:</label>
                 <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
                 <button onClick={this.handleClick}>Clear</button>
-              </form>
-            </div>
+              </form> */}
+            {/* </div> */}
             
             <ul className='snippetList'>
               {this.state.byTag
