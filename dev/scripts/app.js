@@ -69,19 +69,32 @@ class App extends React.Component {
     componentDidMount(){
       //when App component mounts, will check if we have any data in the database, and if so can update main App state and then display it
       const dbRef = firebase.database().ref();
-      dbRef.on('value', (firebaseData)=>{
-        const snippetArray = [];
-        const snippetData = firebaseData.val();
 
-        for(let snipKey in snippetData){
-          snippetData[snipKey].key = snipKey;
-          snippetArray.push(snippetData[snipKey])
-        }
-        this.setState({
-          allSnippets: snippetArray
-        })
-      })
-    }
+      firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          dbRef.on('value', (firebaseData)=>{
+            const snippetArray = [];
+            const snippetData = firebaseData.val();
+    
+            for(let snipKey in snippetData){
+              snippetData[snipKey].key = snipKey;
+              snippetArray.push(snippetData[snipKey])
+            }
+            this.setState({
+              allSnippets: snippetArray
+            })
+          })//closes dbref on value
+
+        } else{
+          this.setState({
+            allSnippets: []
+          })
+          alert('You are signed out!')
+        }//closes if statement
+
+      });//closes auth state change
+
+    }//closes component did mount
     
     render() {
       return (
@@ -97,7 +110,7 @@ class App extends React.Component {
               </form>
             </div>
             
-            <ul>
+            <ul className='snippetList'>
               {this.state.byTag
                 ? this.state.allSnippets.filter((eachSnippet)=>
                   // { return eachSnippet.tag == this.state.byTag})
