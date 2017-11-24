@@ -39,7 +39,11 @@ class Header extends React.Component{
             .then((data)=>{
                 console.log(data);
                 this.setState({
-                    signedIn: true
+                    signedIn: true,
+                    whichForm: '',
+                    email: '',
+                    password: '',
+                    confirm: '',
                 })
             });
         } else {
@@ -53,7 +57,11 @@ class Header extends React.Component{
         .then((data)=>{
             console.log(data)
             this.setState({
-                signedIn: true
+                signedIn: true,
+                whichForm: '',
+                email: '',
+                password: '',
+                confirm: '',
             })
         });
     }
