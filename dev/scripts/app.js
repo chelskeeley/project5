@@ -92,7 +92,8 @@ class App extends React.Component {
             <ul>
               {this.state.byTag
                 ? this.state.allSnippets.filter((eachSnippet)=>
-                  { return eachSnippet.tag == this.state.byTag})
+                  // { return eachSnippet.tag == this.state.byTag})
+                  { return eachSnippet.tag.includes(this.state.byTag)})
                   .map((snip, i) => {
                     return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet} />
                   })
