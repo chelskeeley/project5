@@ -49,7 +49,8 @@ class DisplaySnippet extends React.Component{
                         showLineNumbers: true,
                         tabSize: 2,
                     }}
-                    readOnly={true} />
+                    readOnly={true}
+                    wrapEnabled={true} />
                 <button onClick={()=>this.props.delete(event, this.props.snipData.key)}>Delete</button>
                 
             </div>

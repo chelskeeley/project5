@@ -79,6 +79,7 @@ class CreateSnippet extends React.Component {
 
                     <label htmlFor="mode">Mode:</label>
                     <select name="mode" id="mode" onChange={this.handleChange} value={this.state.mode} name='mode'>
+                        <option>Select</option>
                         <option value="javascript">Javascript</option>
                         <option value="sass">Sass</option>
                         <option value="html">HTML</option>

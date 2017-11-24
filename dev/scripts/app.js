@@ -20,10 +20,7 @@ const config = {
 firebase.initializeApp(config);
 
 /*
-ALLOW THE USER TO SEARCH SNIPPETS BY TAG, AND FILTER THE RESULTS TO SHOW ONLY SNIPPES WHERE THE SEARCHED STRING MATCHES THE TAG
--[ ] make a new search input box and label
--[ ] add a state to the search which tracks the onChange, then update the state
--[ ] filter through the state array of objects(all snippets), and display snippets where the value of the tag property includes() the byTag state string
+
 */
 
 
@@ -37,6 +34,7 @@ class App extends React.Component {
       this.addSnippet = this.addSnippet.bind(this)
       this.removeSnippet = this.removeSnippet.bind(this)
       this.handleChange = this.handleChange.bind(this)
+      this.handleClick = this.handleClick.bind(this)
     }
 
     addSnippet(fullSnip){
@@ -57,6 +55,13 @@ class App extends React.Component {
       this.setState({
         [event.target.name]: event.target.value,
 
+      })
+    }
+
+    handleClick(event){
+      event.preventDefault();
+      this.setState({
+        byTag: ''
       })
     }
 
@@ -85,8 +90,11 @@ class App extends React.Component {
           <div className='wrapper'>
             <CreateSnippet submitForm={this.addSnippet}/>
             <div>
-              <label htmlFor="searchBox">Search By Tag:</label>
-              <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' />
+              <form action="">
+                <label htmlFor="searchBox">Search By Tag:</label>
+                <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
+                <button onClick={this.handleClick}>Clear</button>
+              </form>
             </div>
             
             <ul>
@@ -102,10 +110,6 @@ class App extends React.Component {
                   })
               }
             </ul>
-            {/* <ul>{this.state.allSnippets.map((snip, i) => {
-              return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet} />
-            })}
-            </ul> */}
           </div>
         </div>
       )
