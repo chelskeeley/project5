@@ -43,7 +43,6 @@ class App extends React.Component {
     }
 
     addSnippet(fullSnip){
-      console.log(fullSnip);
       const userSnippet = fullSnip;
       const dbRef = firebase.database().ref();
       dbRef.push(userSnippet);
@@ -51,8 +50,6 @@ class App extends React.Component {
 
     removeSnippet(event, snippetToRemove){
       event.stopPropagation(event);
-
-      console.log(snippetToRemove)
       const dbRef = firebase.database().ref(snippetToRemove);
       dbRef.remove();
     }
