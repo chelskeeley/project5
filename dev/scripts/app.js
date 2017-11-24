@@ -20,15 +20,10 @@ const config = {
 firebase.initializeApp(config);
 
 /*
-WHEN YOU CLICK ON EACH LIST ITEM, LET USER SEE ALL SNIPPET INFO FOR WHAT THEY CLICKED ON , INCLUDING SNIPPET IN HIGHLIGHTED ACE COMPONENT
-
-
-
--[*] the onCLick has to be on the li in snippetList
--[*] each li already has access to all its own data as a prop
--[*] make a new component called DisplaySnippet, pass it all the data for each snippet from snippetLIst
--[*] when you click on an li, set LOCAL state of showModal in snippetLIst to true, then use a ternary operator to say if showmodal is true, render <DisplaySnippet /> else null
-
+ALLOW THE USER TO SEARCH SNIPPETS BY TAG, AND FILTER THE RESULTS TO SHOW ONLY SNIPPES WHERE THE SEARCHED STRING MATCHES THE TAG
+-[ ] make a new search input box and label
+-[ ] add a state to the search which tracks the onChange, then update the state
+-[ ] filter through the state array of objects(all snippets), and display snippets where the value of the tag property includes() the byTag state string
 */
 
 
@@ -36,15 +31,19 @@ class App extends React.Component {
     constructor(){
       super();
       this.state = {
-        allSnippets: []
+        allSnippets: [],
+        byTag: ''
       };
       this.addSnippet = this.addSnippet.bind(this)
       this.removeSnippet = this.removeSnippet.bind(this)
+      this.handleChange = this.handleChange.bind(this)
     }
 
     addSnippet(fullSnip){
       const userSnippet = fullSnip;
       const dbRef = firebase.database().ref();
+      let currentDate = new Date().toDateString();
+      userSnippet.date = currentDate
       dbRef.push(userSnippet);
     }
 
@@ -52,6 +51,13 @@ class App extends React.Component {
       event.stopPropagation(event);
       const dbRef = firebase.database().ref(snippetToRemove);
       dbRef.remove();
+    }
+
+    handleChange(event) {
+      this.setState({
+        [event.target.name]: event.target.value,
+
+      })
     }
 
 
@@ -78,10 +84,27 @@ class App extends React.Component {
           <Header />
           <div className='wrapper'>
             <CreateSnippet submitForm={this.addSnippet}/>
-            <ul>{this.state.allSnippets.map((snip, i)=>{
-              return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet}/>
-              })}
+            <div>
+              <label htmlFor="searchBox">Search By Tag:</label>
+              <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' />
+            </div>
+            
+            <ul>
+              {this.state.byTag
+                ? this.state.allSnippets.filter((eachSnippet)=>
+                  { return eachSnippet.tag == this.state.byTag})
+                  .map((snip, i) => {
+                    return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet} />
+                  })
+                : this.state.allSnippets.map((snip, i) => {
+                    return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet} />
+                  })
+              }
             </ul>
+            {/* <ul>{this.state.allSnippets.map((snip, i) => {
+              return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet} />
+            })}
+            </ul> */}
           </div>
         </div>
       )

@@ -8,9 +8,11 @@ import 'brace/mode/css';
 import 'brace/mode/java';
 import 'brace/mode/ruby';
 import 'brace/mode/python';
+import 'brace/mode/json';
 import 'brace/theme/monokai';
 
 class CreateSnippet extends React.Component {
+    
     constructor(){
         super();
         this.state = {
@@ -18,7 +20,7 @@ class CreateSnippet extends React.Component {
             description: '',
             tag: '',
             snippet: ``,
-            mode: ''
+            mode: '',
 
         }
     this.onChange = this.onChange.bind(this);
@@ -39,13 +41,16 @@ class CreateSnippet extends React.Component {
 
     handleChange(event){
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
+            
         })
     }
+
 
     handleSubmit(event){   
         //prevent default form action
         event.preventDefault();
+        
         this.props.submitForm(this.state);
 
         this.setState({
@@ -53,7 +58,7 @@ class CreateSnippet extends React.Component {
             description: '',
             tag: '',
             snippet: ``,
-            mode: ''
+            mode: '',
         })
 
     }
@@ -77,10 +82,11 @@ class CreateSnippet extends React.Component {
                         <option value="javascript">Javascript</option>
                         <option value="sass">Sass</option>
                         <option value="html">HTML</option>
-                        <option value="css">Css</option>
+                        <option value="css">CSS</option>
                         <option value="java">Java</option>
                         <option value="ruby">Ruby</option>
                         <option value="python">Python</option>
+                        <option value="json">JSON</option>
                     </select>
 
                     <label htmlFor="reactAce">Enter Your Snippet:</label>
@@ -107,6 +113,7 @@ class CreateSnippet extends React.Component {
 
                     <button>Create</button>
                 </form>
+                
             </div>
         )
     }

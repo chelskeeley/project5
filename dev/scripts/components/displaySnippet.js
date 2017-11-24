@@ -8,6 +8,7 @@ import 'brace/mode/css';
 import 'brace/mode/java';
 import 'brace/mode/ruby';
 import 'brace/mode/python';
+import 'brace/mode/json';
 import 'brace/theme/monokai';
 
 class DisplaySnippet extends React.Component{
@@ -29,6 +30,7 @@ class DisplaySnippet extends React.Component{
                 <h4>{this.props.snipData.title}</h4>
                 <p>{this.props.snipData.description}</p>
                 <p>Tags ({this.props.snipData.mode}), Mode ({this.props.snipData.tag})</p>
+                <p>Created on: {this.props.snipData.date}</p>
                 <AceEditor
                     mode={this.props.snipData.mode}
                     theme="monokai"
