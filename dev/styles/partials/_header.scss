@@ -1,6 +1,10 @@
 header {
-    background: orange;
+    background: #f57d02;
     padding: 15px 0;
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
     h1 {
         margin: 0;
         text-align: center;

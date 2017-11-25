@@ -10,13 +10,15 @@ class Header extends React.Component{
             email: '',
             password: '',
             confirm: '',
-            signedIn: false
+            signedIn: false,
+            uid: ''
         }
         this.whichForm = this.whichForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.signup = this.signup.bind(this)
         this.login = this.login.bind(this)
         this.signOut = this.signOut.bind(this)
+        this.userId = this.userId.bind(this)
     }
 
     whichForm(event){
@@ -44,27 +46,35 @@ class Header extends React.Component{
                     email: '',
                     password: '',
                     confirm: '',
+                    uid: data.uid
                 })
             });
         } else {
             alert('Please make sure your password and confirmed password match!')
         }
+        this.props.getUid(this.state.uid)
     }
 
     login(event){
         event.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((data)=>{
-            console.log(data)
+            // console.log(data)
             this.setState({
                 signedIn: true,
                 whichForm: '',
                 email: '',
                 password: '',
                 confirm: '',
+                uid: data.uid
             })
+            this.props.getUid(this.state.uid)
         });
     }
+
+    userId(){
+        // this.props.getUid(this.state.uid)
+    }//need to call this
 
     signOut(event){
         event.preventDefault()
@@ -123,14 +133,12 @@ class Header extends React.Component{
         return(
             <div>
                 <header>
-                    <h1>Project 5!</h1>
-                    <nav>
-                        {logInOutNav}
-                        {/* <ul>
-                            <li><a href="" className='signup' onClick={this.whichForm}>Sign Up</a></li>
-                            <li><a href="" className='login' onClick={this.whichForm}>Sign In</a></li>
-                        </ul> */}
-                    </nav>
+                    <div className="wrapper">
+                        <h1>Codex</h1>
+                        <nav>
+                            {logInOutNav}
+                        </nav>
+                    </div>
                 </header>
                 {loginForm}
             </div>

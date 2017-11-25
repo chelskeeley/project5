@@ -30,12 +30,14 @@ class App extends React.Component {
       this.state = {
         allSnippets: [],
         byTag: '',
-        loggedIn: false
+        loggedIn: false,
+        uid: ''
       };
       this.addSnippet = this.addSnippet.bind(this)
       this.removeSnippet = this.removeSnippet.bind(this)
       this.handleChange = this.handleChange.bind(this)
       this.handleClick = this.handleClick.bind(this)
+      this.userUid = this.userUid.bind(this)
     }
 
     addSnippet(fullSnip){
@@ -66,6 +68,9 @@ class App extends React.Component {
       })
     }
 
+    userUid(uid){
+      console.log(uid)
+    }
 
     componentDidMount(){
       //when App component mounts, will check if we have any data in the database, and if so can update main App state and then display it
@@ -121,17 +126,9 @@ class App extends React.Component {
       }
       return (
         <div>
-          <Header />
+          <Header getUid={this.userUid}/>
           <div className='wrapper'>
-            {/* <CreateSnippet submitForm={this.addSnippet}/> */}
             {mainContent}
-            {/* <div>
-              <form action="">
-                <label htmlFor="searchBox">Search By Tag:</label>
-                <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
-                <button onClick={this.handleClick}>Clear</button>
-              </form> */}
-            {/* </div> */}
             
             <ul className='snippetList'>
               {this.state.byTag
