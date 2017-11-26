@@ -1,0 +1,23 @@
+.snippetList {
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
+    grid-column-gap: 2%;
+    grid-row-gap: 20px;
+    margin-bottom: 40px;
+    
+    li{
+        border: 1px solid black;
+        border-radius: 2px;
+        padding: 10px;
+        background: #fff;
+
+    }
+}
+
+.searchByTag {
+    margin-bottom: 20px;
+    label,
+    input {
+        margin-right: 10px;
+    }
+}

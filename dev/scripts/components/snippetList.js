@@ -28,7 +28,7 @@ class SnippetList extends React.Component{
         return(
         <li onClick={this.handleClick}>
             <h4>{this.props.data.title}</h4>
-            <p>{this.props.data.tag}</p>
+            <p>Tag: {this.props.data.tag}</p>
             {this.state.showModal
                 ? <DisplaySnippet snipData={this.props.data} closeFun={this.closeModal} delete={this.props.remove} />
                 : null

@@ -70,19 +70,19 @@ class CreateSnippet extends React.Component {
                 <form action="" onSubmit={this.handleSubmit}>
                     <div className='fields'>
                         <div className="title">
-                            <label htmlFor="title">Title:</label>
+                            <label htmlFor="title">Title:*</label>
                             <input type="text" onChange={this.handleChange} value={this.state.title} id='title' name='title' required='true'/>
                         </div>
                         <div className="tag">
-                            <label htmlFor="tag">Tag:</label>
+                            <label htmlFor="tag">Tag:*</label>
                             <input type="text" onChange={this.handleChange} value={this.state.tag} id='tag' name='tag' required='true'/>
                         </div>
                         <div className="description">
-                            <label htmlFor="description">Enter a Description:</label>
-                            <input type="text" onChange={this.handleChange} value={this.state.description} id='description' name='description'/>
+                            <label htmlFor="description">Enter a Description:*</label>
+                            <input type="text" onChange={this.handleChange} value={this.state.description} required='true' id='description' name='description'/>
                         </div>
                         <div className="mode">
-                            <label htmlFor="mode">Mode:</label>
+                            <label htmlFor="mode">Mode:*</label>
                             <select name="mode" id="mode" onChange={this.handleChange} value={this.state.mode} name='mode' required='true'>
                                 <option>Select</option>
                                 <option value="javascript">Javascript</option>
@@ -95,9 +95,10 @@ class CreateSnippet extends React.Component {
                                 <option value="json">JSON</option>
                             </select>
                         </div>
+                        <p>*Required Fields</p>
                     </div>
                     <div className='editor'>
-                        <label htmlFor="reactAce">Enter Your Snippet:</label>
+                        <label htmlFor="reactAce">Enter Your Snippet:*</label>
                         <AceEditor
                             mode={this.state.mode}
                             theme="monokai"
@@ -120,9 +121,9 @@ class CreateSnippet extends React.Component {
                             }} 
                             id='reactAce'
                             required='true'/>
+                        <button className='button' >Create</button>
                     </div>
 
-                    <button className='button' >Create</button>
                 </form>
                 
             </div>

@@ -9,7 +9,7 @@ header {
     h1 {
         margin: 0;
         text-align: center;
-        color: $mainColour;
+        color: #f57d02;
         margin-left: 50%;
         transform: translateX(-50%)
     }
@@ -21,10 +21,13 @@ header {
         a {
             text-decoration: none;
             color: #000;
-            padding: 10px;
+            padding: 5px 10px;
             background: $mainColour;
             border-radius: 3px;
             text-transform: uppercase;
+            &:hover {
+                background: #de6B00;
+            }
         }
         li {
             margin-left: 15px;

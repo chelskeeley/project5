@@ -109,7 +109,7 @@ class App extends React.Component {
         mainContent = (
           <div className='mainContent'>
             <CreateSnippet submitForm={this.addSnippet} />
-            <form action="">
+            <form className='searchByTag' action="">
               <label htmlFor="searchBox">Search By Tag:</label>
               <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
               <button className='button' onClick={this.handleClick}>Clear</button>

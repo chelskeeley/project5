@@ -1,10 +1,10 @@
-$mainColour: #f57d02;
+$mainColour: linear-gradient(rgba(245,125,2,1),rgba(251,146,17,1));
 
 
 html {
     font-size: 62.5%;
     background: $mainColour;
-
+    min-height: 100vh;
 }
 
 body {
@@ -27,12 +27,12 @@ li {
     text-transform: uppercase;
     margin-top: 10px;
     padding: 5px 10px;
-    background: #000;
-    color: #fff;
+    background: $mainColour;
+    color: #000;
     border: 1px solid #000;
     border-radius: 3px;
     &:hover {
-        background: $mainColour;
-        border: 1px solid #000;
+        background: #de6b00;
+        border: 1px solid #000 ;
     }
 }

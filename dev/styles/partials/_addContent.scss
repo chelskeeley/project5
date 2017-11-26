@@ -1,18 +1,4 @@
-.snippetList {
-    display: grid;
-    grid-template-columns: repeat(3, 31%);
-    grid-column-gap: 2%;
-    grid-row-gap: 20px;
-    margin-bottom: 40px;
-    
-    li{
-        border: 1px solid black;
-        border-radius: 2px;
-        padding: 10px;
-        background: #fff;
 
-    }
-}
 
 #tag,
 #searchBox {
@@ -31,7 +17,6 @@
     form{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
         label {
             margin-bottom: 10px;
         }
@@ -55,7 +40,13 @@
     .mode {
         display: flex;
         flex-direction: column;
-        margin: 10px;
+        margin-bottom: 10px;
+    }
+    #makeSnippet{
+        margin-top: 10px;
+    }
+    p {
+        font-style: italic;
     }
 }
 

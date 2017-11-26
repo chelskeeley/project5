@@ -51,7 +51,7 @@ class DisplaySnippet extends React.Component{
                     }}
                     readOnly={true}
                     wrapEnabled={true} />
-                <button onClick={()=>this.props.delete(event, this.props.snipData.key)}>Delete</button>
+                <button onClick={()=>this.props.delete(event, this.props.snipData.key)} className='button'>Delete</button>
                 
             </div>
         )
