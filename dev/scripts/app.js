@@ -81,7 +81,7 @@ class App extends React.Component {
           dbRef.on('value', (firebaseData)=>{
             const snippetArray = [];
             const snippetData = firebaseData.val();
-    
+            console.log(snippetData)
             for(let snipKey in snippetData){
               snippetData[snipKey].key = snipKey;
               snippetArray.push(snippetData[snipKey])
@@ -95,38 +95,39 @@ class App extends React.Component {
           })
         } else{
           this.setState({
-            allSnippets: []
-          });
-          this.setState({
+            allSnippets: [],
             loggedIn: false
           })
           alert('You are signed out!')
         }//closes if statement
-
       });//closes auth state change
-
     }//closes component did mount
     
     render() {
       let mainContent = '';
       if(this.state.loggedIn === true){
         mainContent = (
-          <div>
+          <div className='mainContent'>
             <CreateSnippet submitForm={this.addSnippet} />
             <form action="">
               <label htmlFor="searchBox">Search By Tag:</label>
               <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
-              <button onClick={this.handleClick}>Clear</button>
+              <button className='button' onClick={this.handleClick}>Clear</button>
             </form>
           </div>
         )
       }
       else {
-        mainContent = ''
+        mainContent = (
+          <div className='welcome'>
+          <h3>Welcome to Codex!</h3>
+          <p>Codex is awesome! Here are some words that tell you how it works! Blah blah blaaah!</p>
+          </div>
+        )
       }
-      return (
+      return ( 
         <div>
-          <Header getUid={this.userUid}/>
+          <Header getUid={this.userUid} isLoggedIn={this.state.loggedIn}/>
           <div className='wrapper'>
             {mainContent}
             

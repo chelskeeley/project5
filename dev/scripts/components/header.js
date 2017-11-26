@@ -10,7 +10,6 @@ class Header extends React.Component{
             email: '',
             password: '',
             confirm: '',
-            signedIn: false,
             uid: ''
         }
         this.whichForm = this.whichForm.bind(this)
@@ -18,7 +17,6 @@ class Header extends React.Component{
         this.signup = this.signup.bind(this)
         this.login = this.login.bind(this)
         this.signOut = this.signOut.bind(this)
-        this.userId = this.userId.bind(this)
     }
 
     whichForm(event){
@@ -39,9 +37,7 @@ class Header extends React.Component{
         if(this.state.password === this.state.confirm){
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then((data)=>{
-                console.log(data);
                 this.setState({
-                    signedIn: true,
                     whichForm: '',
                     email: '',
                     password: '',
@@ -59,9 +55,7 @@ class Header extends React.Component{
         event.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((data)=>{
-            // console.log(data)
             this.setState({
-                signedIn: true,
                 whichForm: '',
                 email: '',
                 password: '',
@@ -72,15 +66,9 @@ class Header extends React.Component{
         });
     }
 
-    userId(){
-        // this.props.getUid(this.state.uid)
-    }//need to call this
 
     signOut(event){
         event.preventDefault()
-        this.setState({
-            signedIn: false
-        });
         firebase.auth().signOut();
     }
 
@@ -89,40 +77,47 @@ class Header extends React.Component{
         let loginForm = '';
         if(this.state.whichForm === 'signup'){
             loginForm = (
-                <form onSubmit={this.signup}>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" id='email' name='email' onChange={this.handleChange}/>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id='password' name='password' onChange={this.handleChange}/>
-                    <label htmlFor="confirm">Confirm Password:</label>
-                    <input type="password" id='confirm' name='confirm' onChange={this.handleChange}/>
-                    <button>Sign Up</button>
-                </form>
+                <div className='signUp signInForm'>
+                    <h3>Don't have a Codex Account?</h3>
+                    <p>Sign up now!!</p>
+                    <form onSubmit={this.signup}>
+                        <label htmlFor="email" className='visuallyhidden'>Email:</label>
+                        <input type="text" id='email' name='email' onChange={this.handleChange} placeholder='Email'/>
+                        <label htmlFor="password" className='visuallyhidden'>Password:</label>
+                        <input type="password" id='password' name='password' onChange={this.handleChange} placeholder='Password'/>
+                        <label htmlFor="confirm" className='visuallyhidden'>Confirm Password:</label>
+                        <input type="password" id='confirm' name='confirm' onChange={this.handleChange} placeholder='Confirm Password'/>
+                        <button className='button'>Sign Up</button>
+                    </form>
+                </div>
             )
         }
         else if(this.state.whichForm === 'login'){
             loginForm = (
-                <form onSubmit={this.login}>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" id='email' name='email' onChange={this.handleChange} />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id='password' name='password' onChange={this.handleChange}/>
-                    
-                    <button>Sign In</button>
-                </form>
+                <div className='logIn signInForm'>
+                    <h3>Already have a Codex Account?</h3>
+                    <p>Sign in here!</p>
+                    <form onSubmit={this.login}>
+                        <label htmlFor="email" className='visuallyhidden'>Email:</label>
+                        <input type="text" id='email' name='email' onChange={this.handleChange} placeholder='Email'/>
+                        <label htmlFor="password" className='visuallyhidden'>Password:</label>
+                        <input type="password" id='password' name='password' onChange={this.handleChange} placeholder='Password'/>
+                        
+                        <button className='button'>Sign In</button>
+                    </form>
+                </div>
             )
         };
         let logInOutNav = '';
-        if (this.state.signedIn === false) {
+        if (this.props.isLoggedIn === false) {
             logInOutNav = (
                 <ul>
-
-                    <li><a href="" className='signup' onClick={this.whichForm}>Sign Up</a></li>
-                    <li><a href="" className='login' onClick={this.whichForm}>Sign In</a></li>
+                    <li><a href="" className='login' id='button' onClick={this.whichForm}>Sign In</a></li>
+                    <li><a href="" className='signup' id='button' onClick={this.whichForm}>Sign Up</a></li>
                 </ul>
             )
         }
-        else if (this.state.signedIn === true) {
+        else if (this.props.isLoggedIn === true) {
             logInOutNav = (
                 <ul>
                     <li><a href="" className='logout' onClick={this.signOut}>Sign Out</a></li>

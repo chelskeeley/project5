@@ -68,51 +68,61 @@ class CreateSnippet extends React.Component {
             <div className='createSnippet'>
                 <h2>Create a New Snippet</h2>
                 <form action="" onSubmit={this.handleSubmit}>
-                    <label htmlFor="title">Title:</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.title} id='title' name='title'/>
+                    <div className='fields'>
+                        <div className="title">
+                            <label htmlFor="title">Title:</label>
+                            <input type="text" onChange={this.handleChange} value={this.state.title} id='title' name='title' required='true'/>
+                        </div>
+                        <div className="tag">
+                            <label htmlFor="tag">Tag:</label>
+                            <input type="text" onChange={this.handleChange} value={this.state.tag} id='tag' name='tag' required='true'/>
+                        </div>
+                        <div className="description">
+                            <label htmlFor="description">Enter a Description:</label>
+                            <input type="text" onChange={this.handleChange} value={this.state.description} id='description' name='description'/>
+                        </div>
+                        <div className="mode">
+                            <label htmlFor="mode">Mode:</label>
+                            <select name="mode" id="mode" onChange={this.handleChange} value={this.state.mode} name='mode' required='true'>
+                                <option>Select</option>
+                                <option value="javascript">Javascript</option>
+                                <option value="sass">Sass</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                                <option value="java">Java</option>
+                                <option value="ruby">Ruby</option>
+                                <option value="python">Python</option>
+                                <option value="json">JSON</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className='editor'>
+                        <label htmlFor="reactAce">Enter Your Snippet:</label>
+                        <AceEditor
+                            mode={this.state.mode}
+                            theme="monokai"
+                            name="makeSnippet"
+                            onLoad={this.onLoad}
+                            onChange={this.onChange}
+                            fontSize={14}
+                            showPrintMargin={true}
+                            showGutter={true}
+                            height="300px"
+                            width='100%'
+                            highlightActiveLine={true}
+                            value={this.state.snippet}
+                            setOptions={{
+                                enableBasicAutocompletion: false,
+                                enableLiveAutocompletion: false,
+                                enableSnippets: false,
+                                showLineNumbers: true,
+                                tabSize: 2,
+                            }} 
+                            id='reactAce'
+                            required='true'/>
+                    </div>
 
-                    <label htmlFor="tag">Tag:</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.tag} id='tag' name='tag'/>
-
-                    <label htmlFor="description">Enter a Description:</label>
-                    <input type="text" onChange={this.handleChange} value={this.state.description} id='description' name='description'/>
-
-                    <label htmlFor="mode">Mode:</label>
-                    <select name="mode" id="mode" onChange={this.handleChange} value={this.state.mode} name='mode'>
-                        <option>Select</option>
-                        <option value="javascript">Javascript</option>
-                        <option value="sass">Sass</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="java">Java</option>
-                        <option value="ruby">Ruby</option>
-                        <option value="python">Python</option>
-                        <option value="json">JSON</option>
-                    </select>
-
-                    <label htmlFor="reactAce">Enter Your Snippet:</label>
-                    <AceEditor
-                        mode={this.state.mode}
-                        theme="monokai"
-                        name="makeSnippet"
-                        onLoad={this.onLoad}
-                        onChange={this.onChange}
-                        fontSize={14}
-                        showPrintMargin={true}
-                        showGutter={true}
-                        height="300px"
-                        highlightActiveLine={true}
-                        value={this.state.snippet}
-                        setOptions={{
-                            enableBasicAutocompletion: false,
-                            enableLiveAutocompletion: false,
-                            enableSnippets: false,
-                            showLineNumbers: true,
-                            tabSize: 2,
-                        }} 
-                        id='reactAce'/>
-
-                    <button>Create</button>
+                    <button className='button' >Create</button>
                 </form>
                 
             </div>
