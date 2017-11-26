@@ -113,7 +113,7 @@ class Header extends React.Component{
             logInOutNav = (
                 <ul>
                     <li><a href="" className='login' id='button' onClick={this.whichForm}>Sign In</a></li>
-                    <li><a href="" className='signup' id='button' onClick={this.whichForm}>Sign Up</a></li>
+                    <li><a href="" className='signup' id='button' onClick={this.whichForm}>Join Up</a></li>
                 </ul>
             )
         }

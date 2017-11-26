@@ -111,8 +111,10 @@ class App extends React.Component {
             <CreateSnippet submitForm={this.addSnippet} />
             <h2 className='mySnips'>My Snippets</h2>
             <form className='searchByTag' action="">
-              <label htmlFor="searchBox">Search By Tag:</label>
-              <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
+              <div className="searchStyle">
+                <label htmlFor="searchBox">Search By Tag:</label>
+                <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
+              </div>
               <button className='button' onClick={this.handleClick}>Clear</button>
             </form>
           </div>

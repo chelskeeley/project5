@@ -32,9 +32,8 @@ class DisplaySnippet extends React.Component{
                     <button onClick={this.clickHandle} className='button closeModal'><FontAwesome name='times'/></button>
                 </div>
                 <p>{this.props.snipData.description}</p>
-                <p>Tags: {this.props.snipData.mode}</p>
-                <p>Mode: {this.props.snipData.tag}</p>
-                <p>Created on: {this.props.snipData.date}</p>
+                <p><span>Tags:</span> {this.props.snipData.mode}</p>
+                <p><span>Mode:</span> {this.props.snipData.tag}</p>
                 <div className="showSnipBox">
                     <AceEditor
                         mode={this.props.snipData.mode}
@@ -56,6 +55,7 @@ class DisplaySnippet extends React.Component{
                         }}
                         readOnly={true}
                         wrapEnabled={true} />
+                <p className='date'>Created on: {this.props.snipData.date}</p>
                 </div>
                 <button onClick={()=>this.props.delete(event, this.props.snipData.key)} className='button deleteSnippet'>Delete</button>
                 

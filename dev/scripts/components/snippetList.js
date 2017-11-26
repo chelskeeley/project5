@@ -29,7 +29,7 @@ class SnippetList extends React.Component{
         <li onClick={this.handleClick}>
             <div className="tileTitle">
                 <h4>{this.props.data.title}</h4>
-                <p>Tag: {this.props.data.tag}</p>
+                <p><span>Tag:</span> {this.props.data.tag}</p>
             </div>
             <img src={"public/assets/coding.png"} alt="Coding Icon of angle brackets and forward slash" />
             {this.state.showModal

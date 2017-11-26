@@ -1,3 +1,13 @@
+.searchStyle {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 0 0;
+    input {
+        align-self: flex-start;
+        margin-top: 10px 20px 0 0;
+    }
+}
+
 .snippetList {
     display: grid;
     grid-template-columns: repeat(3, 30%);
@@ -12,13 +22,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        span {
+            font-weight: bold;
+        }
         img {
             width: 80px;
         }
     }
-    
     h4 {
         margin-top: 0;
+        font-weight: bold;
     }
 }
 
@@ -28,8 +41,13 @@
 
 .searchByTag {
     margin-bottom: 20px;
-    label,
-    input {
-        margin-right: 10px;
+    display: flex;
+    button {
+        align-self: flex-end;
+    }
+    label {
+        margin: 0 0 10px 0;
     }
 }
+
+
