@@ -10,13 +10,14 @@
     background: #fff;
     padding: 40px;
     margin: 40px 0;
-    h2 {
-        text-align: center;
-        margin-top: 0;
+    @media (max-width: 440px){
+        padding: 20px;
     }
     form{
         display: flex;
-        flex-wrap: wrap;
+        @media (max-width: 800px){
+            flex-direction: column;
+        }        
         label {
             margin-bottom: 10px;
         }
@@ -26,14 +27,48 @@
         margin-right: 10%;
         display: flex;
         flex-direction: column;
+        @media (max-width: 900px){
+            width: 40%;
+        }
+        @media (max-width: 800px){
+            margin-right: 0;
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between
+        }  
+        @media (max-width: 600px){
+            flex-direction: column;
+            flex-wrap: none;
+        }
     }
     .editor {
         width: 60%;
+        @media (max-width: 900px){
+            width: 50%;
+        }
+        @media (max-width: 800px){
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+        }  
+    }
+    h2 {
+        text-align: center;
+        margin-top: 0;
+        
+        @media (max-width: 440px){
+            font-size: 2rem;
+        }
     }
     button {
-        align-self: center;
         margin-top: 20px;
+        @media (max-width: 800px) {
+            align-self: center;
+        }
     }
+
     .title,
     .tag,
     .description,
@@ -41,6 +76,12 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 10px;
+        @media (max-width: 800px){
+            width: 45%
+        }
+        @media (max-width: 600px){
+            width: 100%
+        }
     }
     #makeSnippet{
         margin-top: 10px;

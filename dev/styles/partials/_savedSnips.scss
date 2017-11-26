@@ -1,12 +1,4 @@
-.searchStyle {
-    display: flex;
-    flex-direction: column;
-    margin: 0 20px 0 0;
-    input {
-        align-self: flex-start;
-        margin-top: 10px 20px 0 0;
-    }
-}
+
 
 .snippetList {
     display: grid;
@@ -14,6 +6,15 @@
     grid-column-gap: 5%;
     grid-row-gap: 40px;
     margin-bottom: 40px;
+    @media (max-width: 800px){
+        grid-template-columns: repeat(2, 48%);
+        grid-column-gap: 3%;
+        grid-row-gap: 20px;
+    }
+    @media (max-width: 500px){
+        grid-template-columns: repeat(1, 100%);
+        grid-row-gap: 20px;
+    }
     li{
         border: 1px solid black;
         border-radius: 2px;
@@ -27,6 +28,12 @@
         }
         img {
             width: 80px;
+            @media (max-width: 950px){
+                width: 50px;
+            }
+            @media (max-width: 350px){
+                display: none;
+            }
         }
     }
     h4 {
@@ -37,17 +44,39 @@
 
 .mySnips {
     text-align: center;
+    color: #f57d02;
+    background: #000;
+    margin: 0;
+    padding: 15px 0;
 }
 
 .searchByTag {
-    margin-bottom: 20px;
+    margin: 20px 0;
     display: flex;
+    @media (max-width: 500px){
+        justify-content: space-between;
+    }
     button {
         align-self: flex-end;
     }
     label {
         margin: 0 0 10px 0;
     }
+    .searchStyle {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px 0 0;
+    @media (max-width: 500px){
+        flex-grow: 1;
+    }
+    input {
+        align-self: flex-start;
+        margin-right: 20px;
+        @media (max-width: 500px){
+        align-self: auto;
+        }
+    }
+}
 }
 
 

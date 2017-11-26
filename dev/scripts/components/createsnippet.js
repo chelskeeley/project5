@@ -74,7 +74,7 @@ class CreateSnippet extends React.Component {
                             <input type="text" onChange={this.handleChange} value={this.state.title} id='title' name='title' required='true'/>
                         </div>
                         <div className="tag">
-                            <label htmlFor="tag">Tag:*</label>
+                            <label htmlFor="tag">Tags:*</label>
                             <input type="text" onChange={this.handleChange} value={this.state.tag} id='tag' name='tag' required='true'/>
                         </div>
                         <div className="description">
