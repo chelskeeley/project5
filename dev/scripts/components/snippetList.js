@@ -1,5 +1,5 @@
 import React from 'react';
-import DisplaySnippet from './displaySnippet.js'
+import DisplaySnippet from './displaySnippet.js';
 
 class SnippetList extends React.Component{
     constructor(){
@@ -27,8 +27,11 @@ class SnippetList extends React.Component{
     render(){
         return(
         <li onClick={this.handleClick}>
-            <h4>{this.props.data.title}</h4>
-            <p>Tag: {this.props.data.tag}</p>
+            <div className="tileTitle">
+                <h4>{this.props.data.title}</h4>
+                <p>Tag: {this.props.data.tag}</p>
+            </div>
+            <img src={"public/assets/coding.png"} alt="Coding Icon of angle brackets and forward slash" />
             {this.state.showModal
                 ? <DisplaySnippet snipData={this.props.data} closeFun={this.closeModal} delete={this.props.remove} />
                 : null

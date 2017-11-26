@@ -1,5 +1,6 @@
 $mainColour: linear-gradient(rgba(245,125,2,1),rgba(251,146,17,1));
-
+$mainFont: 'Open Sans', sans-serif;
+$headerFont: 'Source Code Pro', monospace;
 
 html {
     font-size: 62.5%;
@@ -9,11 +10,20 @@ html {
 
 body {
     font-size: 1.6rem;
+    font-family: $mainFont;
 }
 
 .wrapper {
     max-width: 1000px;
     margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: $headerFont;
+
 }
 
 ul,

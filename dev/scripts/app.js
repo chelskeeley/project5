@@ -109,6 +109,7 @@ class App extends React.Component {
         mainContent = (
           <div className='mainContent'>
             <CreateSnippet submitForm={this.addSnippet} />
+            <h2 className='mySnips'>My Snippets</h2>
             <form className='searchByTag' action="">
               <label htmlFor="searchBox">Search By Tag:</label>
               <input type="text" onChange={this.handleChange} value={this.state.byTag} name='byTag' id='searchBox' />
@@ -120,8 +121,9 @@ class App extends React.Component {
       else {
         mainContent = (
           <div className='welcome'>
-          <h3>Welcome to Codex!</h3>
-          <p>Codex is awesome! Here are some words that tell you how it works! Blah blah blaaah!</p>
+            <h3>Welcome to Codex!</h3>
+            <p>Codex is awesome! You can create, save, and store your code snippets so you can access them from anywhere, at any time.</p>
+            <p>Join up or sign in now!</p>
           </div>
         )
       }
@@ -134,7 +136,6 @@ class App extends React.Component {
             <ul className='snippetList'>
               {this.state.byTag
                 ? this.state.allSnippets.filter((eachSnippet)=>
-                  // { return eachSnippet.tag == this.state.byTag})
                   { return eachSnippet.tag.includes(this.state.byTag)})
                   .map((snip, i) => {
                     return <SnippetList data={snip} key={snip.key} remove={this.removeSnippet} />
