@@ -10,6 +10,9 @@
     z-index: 500;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    @media (max-width: 320px){
+        width: 270px;
+    }
     h3 {
         text-align: center;
     }

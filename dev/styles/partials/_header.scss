@@ -5,6 +5,11 @@ header {
         display: flex;
         justify-content: space-between;
         align-content: center;
+        @media (max-width: 410px){
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     }
     h1 {
         margin: 0;
@@ -16,19 +21,27 @@ header {
         font-weight: bold;
         letter-spacing: 1px;
         font-size: 4rem;
+        @media (max-width: 705px){
+            margin: 0;
+            transform: none;
+        }
+        @media (max-width: 410px){
+            margin-left: 10px;
+        }
     }
-    
-    
 
    nav {
        padding-top: 10px;
    }
     ul {
         display: flex;
+        @media (max-width: 410px){
+            margin-bottom: 10px;
+        }
         a {
             text-decoration: none;
             color: #000;
-            padding: 5px 10px;
+            padding: 10px 15px;
             background: $mainColour;
             border-radius: 3px;
             text-transform: uppercase;
@@ -38,6 +51,7 @@ header {
         }
         li {
             margin-left: 15px;
+            padding-top: 5px;
         }
     }
 }
@@ -60,6 +74,19 @@ header {
     z-index: 9999;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    @media (max-width: 740px){
+        left: 30px;
+        right: 30px;
+        transform: translateY(-50%);
+    }
+    @media (max-width: 365px){
+        left: 20px;
+        right: 20px;
+    }
+    @media (max-width: 345px){
+        left: 10px;
+        right: 10px;
+    }
     form{
         display: flex;
         flex-direction: column;
@@ -69,7 +96,6 @@ header {
             padding: 10px;
             width: 80%;
             border: 1px solid black;
-            
         }
     }
 }

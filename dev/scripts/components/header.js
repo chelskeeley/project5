@@ -1,7 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
 
-
 class Header extends React.Component{
     constructor(){
         super();
@@ -66,12 +65,10 @@ class Header extends React.Component{
         });
     }
 
-
     signOut(event){
         event.preventDefault()
         firebase.auth().signOut();
     }
-
 
     render(){
         let loginForm = '';

@@ -19,10 +19,6 @@ const config = {
 };
 firebase.initializeApp(config);
 
-/*
-
-*/
-
 
 class App extends React.Component {
     constructor(){
@@ -57,7 +53,6 @@ class App extends React.Component {
     handleChange(event) {
       this.setState({
         [event.target.name]: event.target.value,
-
       })
     }
 
@@ -68,6 +63,7 @@ class App extends React.Component {
       })
     }
 
+    //for future use, to set up individual login information
     userUid(uid){
       console.log(uid)
     }
@@ -154,4 +150,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
-

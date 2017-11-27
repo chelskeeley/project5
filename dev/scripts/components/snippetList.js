@@ -27,16 +27,15 @@ class SnippetList extends React.Component{
     render(){
         return(
         <li onClick={this.handleClick}>
+            <h4>{this.props.data.title}</h4>
             <div className="tileTitle">
-                <h4>{this.props.data.title}</h4>
+                <img src={"public/assets/coding.png"} alt="Coding Icon of angle brackets and forward slash" />
                 <p><span>Tags:</span> {this.props.data.tag}</p>
             </div>
-            <img src={"public/assets/coding.png"} alt="Coding Icon of angle brackets and forward slash" />
             {this.state.showModal
                 ? <DisplaySnippet snipData={this.props.data} closeFun={this.closeModal} delete={this.props.remove} />
                 : null
             }
- 
         </li>)
     }
 }

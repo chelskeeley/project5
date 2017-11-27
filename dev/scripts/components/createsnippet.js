@@ -34,11 +34,6 @@ class CreateSnippet extends React.Component {
         })
     }
 
-    //look into conditional rendering of components in react
-    //maybe have a condition on the state that is like showModal: true/false
-    //in jsx, have to use expressions,and if/elses are statements,  so HAVE to use ternary operator instead
-    //can use in the snippet component to add and remove a certain class, then style the class/opacity etc with css
-
     handleChange(event){
         this.setState({
             [event.target.name]: event.target.value,
