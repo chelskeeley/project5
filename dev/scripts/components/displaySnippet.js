@@ -44,6 +44,7 @@ class DisplaySnippet extends React.Component{
                         showPrintMargin={true}
                         showGutter={true}
                         height="250px"
+                        width='100%'
                         highlightActiveLine={true}
                         value={this.props.snipData.snippet}
                         setOptions={{
