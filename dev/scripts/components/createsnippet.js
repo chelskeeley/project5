@@ -60,8 +60,10 @@ class CreateSnippet extends React.Component {
 
     render(){
         return (
+        <div>
+
+                <h2 className='createTitle'>Create a New Snippet</h2>
             <div className='createSnippet'>
-                <h2>Create a New Snippet</h2>
                 <form action="" onSubmit={this.handleSubmit}>
                     <div className='fields'>
                         <div className="title">
@@ -116,12 +118,14 @@ class CreateSnippet extends React.Component {
                             }} 
                             id='reactAce'
                             required='true'/>
-                        <button className='button' >Create</button>
+                        <button className='button'>Create</button>
                     </div>
 
                 </form>
                 
             </div>
+            </div>
+        
         )
     }
 }
