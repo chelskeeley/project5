@@ -38,7 +38,7 @@ class App extends React.Component {
 
     addSnippet(fullSnip){
       const userSnippet = fullSnip;
-      const dbRef = firebase.database().ref();
+      const dbRef = firebase.database().ref(this.state.uid);
       let currentDate = new Date().toDateString();
       userSnippet.date = currentDate
       dbRef.push(userSnippet);
@@ -46,7 +46,7 @@ class App extends React.Component {
 
     removeSnippet(event, snippetToRemove){
       event.stopPropagation(event);
-      const dbRef = firebase.database().ref(snippetToRemove);
+      const dbRef = firebase.database().ref(`${this.state.uid}/${snippetToRemove}`);
       dbRef.remove();
     }
 
@@ -64,20 +64,21 @@ class App extends React.Component {
     }
 
     //for future use, to set up individual login information
-    userUid(uid){
-      console.log(uid)
+    userUid(uid) {
+      this.setState({
+        uid: uid
+      })
     }
 
     componentDidMount(){
       //when App component mounts, will check if we have any data in the database, and if so can update main App state and then display it
-      const dbRef = firebase.database().ref();
-
+      
       firebase.auth().onAuthStateChanged((user)=>{
         if(user){
+          const dbRef = firebase.database().ref(user.uid);
           dbRef.on('value', (firebaseData)=>{
             const snippetArray = [];
             const snippetData = firebaseData.val();
-            console.log(snippetData)
             for(let snipKey in snippetData){
               snippetData[snipKey].key = snipKey;
               snippetArray.push(snippetData[snipKey])
@@ -87,12 +88,14 @@ class App extends React.Component {
             })
           });//closes dbref on value
           this.setState({
-            loggedIn: true
+            loggedIn: true,
+            uid: user.uid
           })
         } else{
           this.setState({
             allSnippets: [],
-            loggedIn: false
+            loggedIn: false,
+            uid: ''
           })
           alert('You are signed out!')
         }//closes if statement
